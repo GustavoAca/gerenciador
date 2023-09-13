@@ -1,0 +1,66 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Brazil/East
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+    generate-ddl: true
+    flyway:
+      enable: true
+  cache:
+    type: redis
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev-postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5433/gestao
+    username: postgres
+    password: 1234567
+  flyway:
+    url: jdbc:postgresql://localhost:5433/postgres
+    user: postgres
+    password: 1234567
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+---
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: dev-mysql
+  datasource:
+    url: jdbc:mysql://localhost/bemProtege?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSl=false
+    username: root
+    password: 1928
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  flyway:
+    locations: classpath:db/migration
+
+logging:
+  level:
+    root: INFO
+    com.example.mypackage: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
