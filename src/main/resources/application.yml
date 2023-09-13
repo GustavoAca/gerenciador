@@ -16,6 +16,16 @@ spring:
       enable: true
   cache:
     type: redis
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  redis:
+    host: localhost
+    port: 6379
+
+server:
+  port: 8080
 
 ---
 spring:
@@ -23,7 +33,7 @@ spring:
     activate:
       on-profile: dev-postgres
   datasource:
-    url: jdbc:postgresql://localhost:5433/gestao
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: 1234567
   flyway:
@@ -33,26 +43,7 @@ spring:
     locations: classpath:db/migration
   jpa:
     hibernate:
-      ddl-auto: create
-
----
-server:
-  port: 8080
-
-spring:
-  config:
-    activate:
-      on-profile: dev-mysql
-  datasource:
-    url: jdbc:mysql://localhost/bemProtege?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSl=false
-    username: root
-    password: 1928
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-  flyway:
-    locations: classpath:db/migration
+      ddl-auto: none
 
 logging:
   level:

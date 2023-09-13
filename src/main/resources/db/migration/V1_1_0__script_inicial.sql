@@ -3,7 +3,7 @@
        id SERIAL not null,
        foto varchar(200),
        nome varchar(100) not null,
-       senha varchar(20) not null,
+       senha varchar(100) not null,
        usuario varchar(40) not null,
        primary key (id)
     );
@@ -21,7 +21,7 @@
        id SERIAL not null,
         mensalidade float4,
         nome varchar(100),
-        placa varchar(7),
+        placa varchar(9),
         tipos_veiculos varchar(15),
         uber boolean,
         vencimento_boleto varchar(2),

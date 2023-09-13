@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class VeiculoService {
 
@@ -26,16 +24,16 @@ public class VeiculoService {
         this.veiculoMapper = veiculoMapper;
     }
 
-    public ResponseEntity<Page<VeiculoDto>> getAll(Pageable pageable){
-        return ResponseEntity.ok(veiculoRepository.findAll(pageable).map(veiculoMapper::toDto));
+    public Page<VeiculoDto> getAll(Pageable pageable){
+        return veiculoRepository.findAll(pageable).map(veiculoMapper::toDto);
     }
 
-    public ResponseEntity<VeiculoDto> getById(Long id){
-        return veiculoRepository.findById(id).map(veiculoMapper::toDto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public VeiculoDto getById(Long id){
+        return veiculoRepository.findById(id).map(veiculoMapper::toDto).orElseThrow();
     }
 
-    public ResponseEntity<Page<VeiculoDto>> getByTitulo(String nome, Pageable pageable){
-        return ResponseEntity.ok(veiculoRepository.findAllByNomeContainingIgnoreCase(nome, pageable).map(veiculoMapper::toDto));
+    public Page<VeiculoDto> getByTitulo(String nome, Pageable pageable){
+        return veiculoRepository.findAllByNomeContainingIgnoreCase(nome, pageable).map(veiculoMapper::toDto);
     }
 
     public ResponseEntity<VeiculoDto> salvar(Veiculo veiculoModel){

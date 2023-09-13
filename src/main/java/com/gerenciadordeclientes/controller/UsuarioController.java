@@ -1,12 +1,7 @@
 package com.gerenciadordeclientes.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.gerenciadordeclientes.model.Usuario;
 import com.gerenciadordeclientes.model.UsuarioLogin;
-import com.gerenciadordeclientes.repository.ClienteRepository;
-import com.gerenciadordeclientes.repository.UsuarioRepository;
 import com.gerenciadordeclientes.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +12,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -42,7 +31,7 @@ public class UsuarioController {
 	@GetMapping
 	@Cacheable("usuarios")
 	public Page<Usuario> getAll(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
-		return (usuarioService.findAll(pageable));
+		return usuarioService.findAll(pageable);
 	}
 	
 	@PostMapping("/logar")

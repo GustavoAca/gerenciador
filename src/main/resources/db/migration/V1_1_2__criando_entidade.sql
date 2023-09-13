@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS imagens (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    dados BYTEA NOT NULL
+);

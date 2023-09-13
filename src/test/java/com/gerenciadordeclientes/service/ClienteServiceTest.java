@@ -1,11 +1,9 @@
 package com.gerenciadordeclientes.service;
 
+import com.gerenciadordeclientes.GerenciadorApplication;
 import com.gerenciadordeclientes.dto.cliente.ClienteDto;
-import com.gerenciadordeclientes.dto.cliente.ClienteMapper;
-import com.gerenciadordeclientes.gerenciador.GerenciadorApplication;
 import com.gerenciadordeclientes.model.Cliente;
 import com.gerenciadordeclientes.model.Usuario;
-import com.gerenciadordeclientes.repository.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = GerenciadorApplication.class)
 class ClienteServiceTest {

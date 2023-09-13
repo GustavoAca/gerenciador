@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ClienteService {
     private final ClienteRepository clienteRepository;
@@ -30,13 +28,13 @@ public class ClienteService {
                 .orElseThrow(() -> new NaoEncontradoException("Cliente não encontrado"));
     }
 
-    public ResponseEntity<Page<ClienteDto>> encontrarPorNome(String nome, Pageable pageable){
-     return ResponseEntity.ok(clienteRepository.findAllByNomeContainingIgnoreCase(nome, pageable)
-             .map(clienteMapper::toDto));
+    public Page<ClienteDto> encontrarPorNome(String nome, Pageable pageable){
+     return clienteRepository.findAllByNomeContainingIgnoreCase(nome, pageable)
+             .map(clienteMapper::toDto);
     }
 
-    public ResponseEntity<Page<ClienteDto>> todos(Pageable pageable){
-        return ResponseEntity.ok(clienteRepository.findAll(pageable).map(clienteMapper::toDto));
+    public Page<ClienteDto> todos(Pageable pageable){
+        return clienteRepository.findAll(pageable).map(clienteMapper::toDto);
     }
 
     public void deletar(Long id){
