@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,7 @@ public class UsuarioController {
 
 	@GetMapping
 	@Cacheable("usuarios")
-	public Page<Usuario> getAll(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+	public Page<Usuario> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
 		return usuarioService.findAll(pageable);
 	}
 	

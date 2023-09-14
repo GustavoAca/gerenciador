@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class VeiculoController {
 
 	@GetMapping
 	@Cacheable("veiculos")
-	public Page<VeiculoDto> getAll(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+	public Page<VeiculoDto> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getAll(pageable);
 	}
 
@@ -39,7 +38,7 @@ public class VeiculoController {
 	@GetMapping("/titulo/{nome}")
 	@Cacheable("veiculoPorNome")
 	public Page<VeiculoDto> GetByTitulo(@PathVariable String nome,
-														@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+										@PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getByTitulo(nome, pageable);
 	}
 
@@ -60,8 +59,8 @@ public class VeiculoController {
 
 	@GetMapping("/vencimento/{dataVencimento}")
 	@Cacheable("veiculosporvencimento")
-	public ResponseEntity<Page<VeiculoDto>> getVeiculosPorVencimento(@PathVariable String dataVencimento,
-																	 @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+	public Page<VeiculoDto> getVeiculosPorVencimento(@PathVariable String dataVencimento,
+													 @PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getVeiculosPorVencimento(dataVencimento, pageable);
 	}
 }

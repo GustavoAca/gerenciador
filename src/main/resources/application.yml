@@ -1,3 +1,6 @@
+file:
+  upload-dir: uploads
+
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -33,17 +36,17 @@ spring:
     activate:
       on-profile: dev-postgres
   datasource:
-    url: jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://localhost:5433/gestao
     username: postgres
     password: 1234567
   flyway:
-    url: jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://localhost:5433/gestao
     user: postgres
     password: 1234567
     locations: classpath:db/migration
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
 logging:
   level:

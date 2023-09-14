@@ -50,8 +50,8 @@ public class VeiculoService {
         veiculoRepository.deleteById(id);
     }
 
-    public ResponseEntity<Page<VeiculoDto>> getVeiculosPorVencimento(String vencimento, Pageable pageable){
-        return ResponseEntity.ok(veiculoRepository.findVeiculoByVencimento(vencimento, pageable).map(veiculoMapper::toDto));
+    public Page<VeiculoDto> getVeiculosPorVencimento(String vencimento, Pageable pageable){
+        return veiculoRepository.findVeiculoByVencimento(vencimento, pageable).map(veiculoMapper::toDto);
     }
 
 }

@@ -1,37 +1,43 @@
 
-    create table if not exists usuarios (
-       id SERIAL not null,
-       foto varchar(200),
-       nome varchar(100) not null,
-       senha varchar(100) not null,
-       usuario varchar(40) not null,
-       primary key (id)
+    CREATE TABLE IF NOT EXISTS usuarios (
+       id SERIAL NOT NULL,
+       foto VARCHAR(200),
+       nome VARCHAR(100) NOT NULL,
+       senha VARCHAR(100) NOT NULL,
+       usuario VARCHAR(40) NOT NULL,
+       PRIMARY KEY (id)
     );
 
-    create table if not exists clientes(
-   	    id SERIAL not null,
-   		contato varchar(12),
-        nome varchar(100),
+    CREATE TABLE IF NOT EXISTS clientes(
+   	    id SERIAL NOT NULL,
+   		contato VARCHAR(12),
+        nome VARCHAR(100),
         usuario_id SERIAL,
-        primary key (id),
-        constraint fk_usuario foreign key (usuario_id) references usuarios(id)
+        PRIMARY KEY (id),
+        CONSTRAINT fk_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
         );
 
-    create table if not exists veiculos (
-       id SERIAL not null,
-        mensalidade float4,
-        nome varchar(100),
-        placa varchar(9),
-        tipos_veiculos varchar(15),
-        uber boolean,
-        vencimento_boleto varchar(2),
-        cliente_id SERIAL,
-        primary key (id),
-        constraint fk_cliente foreign key (cliente_id) references clientes(id)
+    CREATE TABLE IF NOT EXISTS imagens (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(255) NOT NULL,
+        dados BYTEA NOT NULL
     );
 
-    create index idx_cliente on clientes (id);
+    CREATE TABLE IF NOT EXISTS veiculos (
+       id SERIAL NOT NULL,
+        mensalidade float4,
+        nome VARCHAR(100),
+        placa VARCHAR(9),
+        tipos_veiculos VARCHAR(15),
+        uber BOOLEAN,
+        vencimento_boleto VARCHAR(2),
+        cliente_id SERIAL,
+        PRIMARY KEY (id),
+        CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+    );
 
-    create index idx_veiculo on veiculos (id);
+    CREATE INDEX IF NOT EXISTS idx_cliente ON clientes (id);
 
-    create index idx_nome_cliente on clientes (nome);
+    CREATE INDEX IF NOT EXISTS idx_veiculo ON veiculos (id);
+
+    CREATE INDEX IF NOT EXISTS idx_nome_cliente ON clientes (nome);

@@ -4,28 +4,20 @@ VALUES(NULL, 'Gustavo', '$2a$10$BophUi6FRohFY6voaKkcIuW1e8YPlrLbOFB3xUerDwQN4W4J
 
 INSERT INTO clientes
 (usuario_id,contato, nome)
-VALUES(1,'11995671164', 'Geraldo');
+VALUES((SELECT MAX(ID) FROM USUARIOS),'11995671164', 'Geraldo');
 
 INSERT INTO clientes
 (contato, nome, usuario_id)
-VALUES('11995671164', 'Geraldo', 1);
+VALUES('11995671164', 'Geraldo', (SELECT MAX(ID) FROM USUARIOS));
 
 INSERT INTO clientes
 (contato, nome, usuario_id)
-VALUES('11995671165', 'Grimaldo', 1);
+VALUES('11995671165', 'Grimaldo', (SELECT MAX(ID) FROM USUARIOS));
 
 INSERT INTO clientes
 (contato, nome, usuario_id)
-VALUES('11995671166', 'Gabriel', 1);
+VALUES('11995671166', 'Gabriel', (SELECT MAX(ID) FROM USUARIOS));
 
 INSERT INTO clientes
 (contato, nome, usuario_id)
-VALUES('11995671167', 'Grealdo', 1);
-
-INSERT INTO veiculos
-(mensalidade, nome, placa, tipos_veiculos, uber, vencimento_boleto, cliente_id)
-VALUES(11.5, 'Fusca', 'abc-1234', 'CAMINHAO', NULL, '10', 1);
-
-INSERT INTO veiculos
-(mensalidade, nome, placa, tipos_veiculos, uber, vencimento_boleto, cliente_id)
-VALUES(11.5, 'Fiorino', 'def-4567', 'CAMINHAO', NULL, '10', 1);
+VALUES('11995671167', 'Grealdo', (SELECT MAX(ID) FROM USUARIOS));

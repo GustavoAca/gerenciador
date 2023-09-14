@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class ClienteController {
 
     @GetMapping
     @Cacheable("clientes")
-    public Page<ClienteDto> getAll(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+    public Page<ClienteDto> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable) {
         System.out.println("Buscando clientes");
         return clienteService.todos(pageable);
     }
@@ -33,7 +32,7 @@ public class ClienteController {
     @GetMapping("/nome/{nome}")
     @Cacheable("cliente")
     public Page<ClienteDto> encontrarPorNome(@PathVariable String nome,
-                                                             @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+                                             @PageableDefault(page = 0, size = 10) Pageable pageable) {
         return clienteService.encontrarPorNome(nome, pageable);
     }
 
