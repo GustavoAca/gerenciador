@@ -1,8 +1,8 @@
 package com.gerenciadordeclientes.controller;
 
+import com.gerenciadordeclientes.domain.Cliente;
 import com.gerenciadordeclientes.dto.cliente.ClienteDto;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
-import com.gerenciadordeclientes.model.Cliente;
 import com.gerenciadordeclientes.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;

@@ -1,14 +1,16 @@
-package com.gerenciadordeclientes.model;
+package com.gerenciadordeclientes.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.util.List;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
-import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter

@@ -1,10 +1,4 @@
-package com.gerenciadordeclientes.model;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
+package com.gerenciadordeclientes.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -16,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
@@ -47,5 +44,5 @@ public class Usuario implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
-	private List<Cliente> cliente = new ArrayList<>();
+	private List<Cliente> cliente;
 }

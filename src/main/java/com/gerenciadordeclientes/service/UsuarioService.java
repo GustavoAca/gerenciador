@@ -1,17 +1,16 @@
 package com.gerenciadordeclientes.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.gerenciadordeclientes.domain.Usuario;
+import com.gerenciadordeclientes.domain.UsuarioLogin;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
-import com.gerenciadordeclientes.model.Usuario;
-import com.gerenciadordeclientes.model.UsuarioLogin;
 import com.gerenciadordeclientes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service

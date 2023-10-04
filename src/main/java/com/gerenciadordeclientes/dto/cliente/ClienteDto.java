@@ -1,7 +1,7 @@
 package com.gerenciadordeclientes.dto.cliente;
 
-import com.gerenciadordeclientes.model.Usuario;
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
+import com.gerenciadordeclientes.domain.Usuario;
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.gerenciadordeclientes.controller;
 
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoDto;
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
 import com.gerenciadordeclientes.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;

@@ -1,9 +1,9 @@
 package com.gerenciadordeclientes.service;
 
 import com.gerenciadordeclientes.GerenciadorApplication;
+import com.gerenciadordeclientes.domain.Cliente;
+import com.gerenciadordeclientes.domain.Usuario;
 import com.gerenciadordeclientes.dto.cliente.ClienteDto;
-import com.gerenciadordeclientes.model.Cliente;
-import com.gerenciadordeclientes.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -54,12 +54,12 @@ class ClienteServiceTest {
             @BeforeEach
             void setup(){
                 Pageable pageable = PageRequest.of(0,2);
-              clienteDtos =  clienteService.todos(pageable).getBody();
+              clienteDtos =  clienteService.todos(pageable);
             }
 
             @Test
             void Deve_vir_paginado(){
-                assertEquals(2L, clienteDtos.getTotalElements());
+                assertEquals(2L, clienteDtos.stream().count());
             }
         }
     }

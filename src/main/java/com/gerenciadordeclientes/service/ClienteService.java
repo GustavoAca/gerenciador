@@ -1,9 +1,9 @@
 package com.gerenciadordeclientes.service;
 
+import com.gerenciadordeclientes.domain.Cliente;
 import com.gerenciadordeclientes.dto.cliente.ClienteDto;
 import com.gerenciadordeclientes.dto.cliente.ClienteMapper;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
-import com.gerenciadordeclientes.model.Cliente;
 import com.gerenciadordeclientes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

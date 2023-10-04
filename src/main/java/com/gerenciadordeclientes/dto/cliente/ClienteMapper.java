@@ -1,6 +1,6 @@
 package com.gerenciadordeclientes.dto.cliente;
 
-import com.gerenciadordeclientes.model.Cliente;
+import com.gerenciadordeclientes.domain.Cliente;
 import org.springframework.stereotype.Component;
 
 @Component

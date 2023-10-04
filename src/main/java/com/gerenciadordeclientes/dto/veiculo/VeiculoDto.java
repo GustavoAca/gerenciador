@@ -1,6 +1,6 @@
 package com.gerenciadordeclientes.dto.veiculo;
 
-import com.bemprotege.backend.model.veiculo.TiposVeiculos;
+import com.gerenciadordeclientes.domain.veiculo.TiposVeiculos;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

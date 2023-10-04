@@ -1,8 +1,7 @@
-package com.gerenciadordeclientes.model.veiculo;
+package com.gerenciadordeclientes.domain.veiculo;
 
-import com.bemprotege.backend.model.veiculo.TiposVeiculos;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gerenciadordeclientes.model.Cliente;
+import com.gerenciadordeclientes.domain.Cliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,8 @@
 package com.gerenciadordeclientes.service;
 
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoDto;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoMapper;
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
 import com.gerenciadordeclientes.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.gerenciadordeclientes.model;
+package com.gerenciadordeclientes.domain;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

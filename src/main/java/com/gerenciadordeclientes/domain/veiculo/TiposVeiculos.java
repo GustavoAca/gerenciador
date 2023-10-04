@@ -1,4 +1,4 @@
-package com.bemprotege.backend.model.veiculo;
+package com.gerenciadordeclientes.domain.veiculo;
 
 public enum TiposVeiculos {
 	MOTO,CARRO,CAMINHAO

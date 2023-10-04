@@ -1,7 +1,7 @@
 package com.gerenciadordeclientes.controller;
 
 
-import com.gerenciadordeclientes.model.Imagem;
+import com.gerenciadordeclientes.domain.Imagem;
 import com.gerenciadordeclientes.service.ImagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

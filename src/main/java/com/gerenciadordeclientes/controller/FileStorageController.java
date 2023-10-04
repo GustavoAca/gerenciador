@@ -1,6 +1,6 @@
 package com.gerenciadordeclientes.controller;
 
-import com.gerenciadordeclientes.model.multipart.FileStorageProperties;
+import com.gerenciadordeclientes.domain.multipart.FileStorageProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

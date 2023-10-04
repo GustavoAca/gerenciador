@@ -1,7 +1,7 @@
 package com.gerenciadordeclientes.controller;
 
-import com.gerenciadordeclientes.model.Usuario;
-import com.gerenciadordeclientes.model.UsuarioLogin;
+import com.gerenciadordeclientes.domain.Usuario;
+import com.gerenciadordeclientes.domain.UsuarioLogin;
 import com.gerenciadordeclientes.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,6 @@
 package com.gerenciadordeclientes.repository;
 
-import java.util.List;
-
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

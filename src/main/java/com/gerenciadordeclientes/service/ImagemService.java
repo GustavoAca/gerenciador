@@ -1,7 +1,7 @@
 package com.gerenciadordeclientes.service;
 
 
-import com.gerenciadordeclientes.model.Imagem;
+import com.gerenciadordeclientes.domain.Imagem;
 import com.gerenciadordeclientes.repository.ImagemRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

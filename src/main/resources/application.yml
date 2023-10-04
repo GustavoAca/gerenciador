@@ -1,6 +1,11 @@
 file:
   upload-dir: uploads
 
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
+
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -30,6 +35,20 @@ spring:
 server:
   port: 8080
 
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+# Configurações para o banco de dados de teste (você pode personalizar conforme necessário)
+datasource:
+  url: jdbc:h2:mem:testdb
+  driver-class-name: org.h2.Driver
+  username: sa
+  password: password
+  hikari:
+    maximum-pool-size: 5
 ---
 spring:
   config:

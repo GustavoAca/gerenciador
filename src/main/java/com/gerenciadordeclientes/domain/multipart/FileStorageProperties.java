@@ -1,4 +1,4 @@
-package com.gerenciadordeclientes.model.multipart;
+package com.gerenciadordeclientes.domain.multipart;
 
 import lombok.Getter;
 import lombok.Setter;

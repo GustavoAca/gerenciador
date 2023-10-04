@@ -1,12 +1,9 @@
 package com.gerenciadordeclientes.repository;
 
-import java.util.List;
-
-import com.gerenciadordeclientes.model.Cliente;
+import com.gerenciadordeclientes.domain.Cliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
 @Repository

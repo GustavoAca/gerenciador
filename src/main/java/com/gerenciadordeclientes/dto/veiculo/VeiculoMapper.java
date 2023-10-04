@@ -1,8 +1,8 @@
 package com.gerenciadordeclientes.dto.veiculo;
 
+import com.gerenciadordeclientes.domain.Cliente;
+import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
-import com.gerenciadordeclientes.model.Cliente;
-import com.gerenciadordeclientes.model.veiculo.Veiculo;
 import com.gerenciadordeclientes.service.ClienteService;
 import org.springframework.stereotype.Component;
 
