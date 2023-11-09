@@ -1,6 +1,7 @@
 package com.gerenciadordeclientes.controller;
 
 import com.gerenciadordeclientes.domain.veiculo.Veiculo;
+import com.gerenciadordeclientes.domain.veiculo.Vencimento;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoDto;
 import com.gerenciadordeclientes.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class VeiculoController {
 	}
 
 	@PutMapping
-	public ResponseEntity<VeiculoDto> put (@RequestBody Veiculo veiculo){
+	public ResponseEntity<VeiculoDto> put(@RequestBody Veiculo veiculo){
 		return veiculoService.alterar(veiculo);
 	}
 
@@ -59,7 +60,7 @@ public class VeiculoController {
 
 	@GetMapping("/vencimento/{dataVencimento}")
 	@Cacheable("veiculosporvencimento")
-	public Page<VeiculoDto> getVeiculosPorVencimento(@PathVariable String dataVencimento,
+	public Page<VeiculoDto> getVeiculosPorVencimento(@PathVariable Vencimento dataVencimento,
 													 @PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getVeiculosPorVencimento(dataVencimento, pageable);
 	}

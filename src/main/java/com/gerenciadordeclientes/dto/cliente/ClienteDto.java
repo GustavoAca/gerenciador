@@ -1,6 +1,6 @@
 package com.gerenciadordeclientes.dto.cliente;
 
-import com.gerenciadordeclientes.domain.Usuario;
+import com.gerenciadordeclientes.domain.user.User;
 import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +24,6 @@ public class ClienteDto implements Serializable {
     private String nome;
     private String contato;
     private List<Veiculo> veiculo;
-    private Usuario usuario;
+    private User user;
 
 }
