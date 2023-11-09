@@ -6,6 +6,7 @@ import com.gerenciadordeclientes.dto.cliente.ClienteMapper;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
 import com.gerenciadordeclientes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -27,25 +28,26 @@ public class ClienteService {
                 .orElseThrow(() -> new NaoEncontradoException("Cliente não encontrado"));
     }
 
-    public Page<ClienteDto> encontrarPorNome(String nome, Pageable pageable){
-     return clienteRepository.findAllByNomeContainingIgnoreCase(nome, pageable)
-             .map(clienteMapper::toDto);
+    public Page<ClienteDto> encontrarPorNome(String nome, Pageable pageable) {
+        return clienteRepository.findAllByNomeContainingIgnoreCase(nome, pageable)
+                .map(clienteMapper::toDto);
     }
 
-    public Page<ClienteDto> todos(Pageable pageable){
+    public Page<ClienteDto> todos(Pageable pageable) {
         return clienteRepository.findAll(pageable).map(clienteMapper::toDto);
     }
 
-    public void deletar(Long id){
+    public void deletar(Long id) {
         clienteRepository.deleteById(id);
     }
 
-    public ClienteDto salvar(Cliente cliente){
+    public ClienteDto salvar(Cliente cliente) {
         return clienteMapper.toDto(clienteRepository.save(cliente));
     }
 
-    public ResponseEntity<ClienteDto> atualizar(Cliente cliente) {
-        var clienteOptional = clienteRepository.findById(cliente.getId());
+    @CacheEvict(value = {"buscarPorNome", "buscarClienteId", "buscarClientes"}, allEntries = true)
+    public ResponseEntity<ClienteDto> atualizar(Cliente cliente, Long id) {
+        var clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
             clienteRepository.save(cliente);
             return ResponseEntity.ok(clienteMapper.toDto(cliente));

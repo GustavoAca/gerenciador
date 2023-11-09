@@ -36,7 +36,6 @@ public class AuthenticationController {
     }
 
     @GetMapping
-    @Cacheable("usuarios")
     public Page<User> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
         return authenticationService.findAll(pageable);
     }

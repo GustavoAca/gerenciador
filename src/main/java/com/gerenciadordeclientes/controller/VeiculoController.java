@@ -25,19 +25,19 @@ public class VeiculoController {
 	}
 
 	@GetMapping
-	@Cacheable("veiculos")
+	@Cacheable(value = "buscarVeiculos", key = "#pageable.pageNumber")
 	public Page<VeiculoDto> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getAll(pageable);
 	}
 
-	@GetMapping("/{id_veiculo}")
-	@Cacheable("veiculoid")
+	@GetMapping("/{id}")
+	@Cacheable(value = "buscarVeiculoId", key = "#id")
 	public VeiculoDto getById(@PathVariable Long id){
 		return veiculoService.getById(id);
 	}
 
 	@GetMapping("/titulo/{nome}")
-	@Cacheable("veiculoPorNome")
+	@Cacheable(value = "buscarVeiculoPorNome", key = "#nome")
 	public Page<VeiculoDto> GetByTitulo(@PathVariable String nome,
 										@PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getByTitulo(nome, pageable);
@@ -49,7 +49,7 @@ public class VeiculoController {
 	}
 
 	@PutMapping
-	public ResponseEntity<VeiculoDto> put(@RequestBody Veiculo veiculo){
+	public ResponseEntity<VeiculoDto> atualizar(@RequestBody Veiculo veiculo){
 		return veiculoService.alterar(veiculo);
 	}
 
@@ -59,7 +59,7 @@ public class VeiculoController {
 	}
 
 	@GetMapping("/vencimento/{dataVencimento}")
-	@Cacheable("veiculosporvencimento")
+	@Cacheable(value = "buscarPorVencimento", key = "#pageable.pageNumber")
 	public Page<VeiculoDto> getVeiculosPorVencimento(@PathVariable Vencimento dataVencimento,
 													 @PageableDefault(page = 0, size = 10) Pageable pageable){
 		return veiculoService.getVeiculosPorVencimento(dataVencimento, pageable);

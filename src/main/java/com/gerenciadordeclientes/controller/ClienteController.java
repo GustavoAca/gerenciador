@@ -5,6 +5,7 @@ import com.gerenciadordeclientes.dto.cliente.ClienteDto;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
 import com.gerenciadordeclientes.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,34 +28,35 @@ public class ClienteController {
     }
 
     @GetMapping
-    @Cacheable("clientes")
+    @Cacheable(value = "buscarClientes", key = "#pageable.pageNumber")
     public Page<ClienteDto> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable) {
         System.out.println("Buscando clientes");
         return clienteService.todos(pageable);
     }
 
     @GetMapping("/nome/{nome}")
-    @Cacheable("cliente")
+    @Cacheable(value = "buscarPorNome", key = "#nome")
     public Page<ClienteDto> encontrarPorNome(@PathVariable String nome,
                                              @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        System.out.println("Passou aqui");
         return clienteService.encontrarPorNome(nome, pageable);
     }
 
     @GetMapping("/{id}")
-    @Cacheable("clienteId")
+    @Cacheable(value = "buscarClienteId", key = "#id")
     public ClienteDto buscaPorId(@PathVariable Long id) throws NaoEncontradoException {
         return clienteService.buscarPorId(id);
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDto> post(@RequestBody Cliente cliente) {
+    public ResponseEntity<ClienteDto> salvar(@RequestBody Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvar(cliente));
     }
 
-    @PatchMapping("/atualizar")
-    public ResponseEntity<ClienteDto> put(@RequestBody Cliente cliente) {
-        Objects.requireNonNull(cliente.getId());
-        return clienteService.atualizar(cliente);
+    @PutMapping("/{id}/atualizar")
+    public ResponseEntity<ClienteDto> atualizar(@RequestBody Cliente cliente,
+                                          @PathVariable Long id) throws NaoEncontradoException {
+        return clienteService.atualizar(cliente, id);
     }
 
     @DeleteMapping("/{id}")

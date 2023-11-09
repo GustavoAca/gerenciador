@@ -1,5 +1,5 @@
 file:
-  upload-dir: uploads
+  uploadDir: gerenciador/src/main/resources/uploads
 
 api:
   security:
@@ -18,19 +18,20 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-    show-sql: true
+    show-sql: false
     generate-ddl: true
     flyway:
       enable: true
-  cache:
-    type: redis
   servlet:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
   redis:
-    host: localhost
-    port: 6379
+    host: ${HOST}
+    port: ${PORT}
+  cache:
+    type: redis
+    cache-names: buscar_cliente, buscar_cliente_id, buscar_clientes_por_nome
 
 server:
   port: 8080
