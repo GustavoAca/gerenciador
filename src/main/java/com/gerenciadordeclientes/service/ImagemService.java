@@ -19,9 +19,10 @@ public class ImagemService {
     }
 
     public Imagem salvarImagem(String nome, MultipartFile imagem) throws IOException {
+        byte[] dados = Base64.getDecoder().decode(imagem.getBytes());
         Imagem novaImagem = new Imagem();
         novaImagem.setNome(nome);
-        novaImagem.setDados(Base64.getEncoder().encode(imagem.getBytes()));
+        novaImagem.setDados(dados);
 
         return imagemRepository.save(novaImagem);
     }

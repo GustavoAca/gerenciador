@@ -1,7 +1,9 @@
 package com.gerenciadordeclientes.controller;
 
 import com.gerenciadordeclientes.domain.multipart.FileStorageProperties;
+import com.gerenciadordeclientes.service.ImagemService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -19,23 +21,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/files")
 public class FileStorageController {
     private final Path fileStorageLocation;
 
-    public FileStorageController(FileStorageProperties fileStorageProperties){
+    @Autowired
+    public FileStorageController(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
                 .toAbsolutePath().normalize();
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
-        try{
+        try {
             Path targetLocation = fileStorageLocation.resolve(fileName);
             file.transferTo(targetLocation);
 
@@ -43,24 +45,21 @@ public class FileStorageController {
                     .path("/api/files/download/")
                     .path(fileName)
                     .toUriString();
-
             return ResponseEntity.ok("Upload completed! Download link: " + fileDownloadUri);
-        }catch (IOException e){
+        } catch (IOException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
-
     @GetMapping("/download/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) throws IOException{
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) throws IOException {
         Path filePath = fileStorageLocation.resolve(fileName).normalize();
 
         try {
             Resource resource = new UrlResource(filePath.toUri());
-
             String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
 
-            if(contentType == null)
+            if (contentType == null)
                 contentType = "application/octet-stream";
 
             return ResponseEntity.ok()
@@ -74,10 +73,15 @@ public class FileStorageController {
 
     @GetMapping("/list")
     public ResponseEntity<List<String>> listFiles() throws IOException {
-        List<String> fileNames = Files.list(fileStorageLocation)
-                .map(Path::getFileName)
-                .map(Path::toString)
-                .collect(Collectors.toList());
+        List<String> fileNames = null;
+        try {
+            fileNames = Files.list(fileStorageLocation)
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .toList();
+        } catch (IOException e) {
+            throw new IOException(e);
+        }
 
         return ResponseEntity.ok(fileNames);
     }
