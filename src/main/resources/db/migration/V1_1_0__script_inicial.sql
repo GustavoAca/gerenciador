@@ -1,17 +1,8 @@
-
-    CREATE TABLE IF NOT EXISTS usuarios (
-       id SERIAL NOT NULL,
-       foto VARCHAR(200),
-       nome VARCHAR(100) NOT NULL,
-       senha VARCHAR(100) NOT NULL,
-       usuario VARCHAR(40) NOT NULL,
-       PRIMARY KEY (id)
-    );
-
     CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
         login VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(20) NOT NULL,
+        password VARCHAR(255) NOT NULL,
         role VARCHAR(20) NOT NULL
     );
 
@@ -19,9 +10,9 @@
    	    id SERIAL NOT NULL,
    		contato VARCHAR(12),
         nome VARCHAR(100),
-        usuario_id SERIAL,
+        user_id SERIAL,
         PRIMARY KEY (id),
-        CONSTRAINT fk_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+        CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
         );
 
     CREATE TABLE IF NOT EXISTS imagens (

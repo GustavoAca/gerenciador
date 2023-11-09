@@ -8,7 +8,6 @@ import com.gerenciadordeclientes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -41,15 +40,17 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    public ResponseEntity<ClienteDto> adicionar(Cliente cliente){
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteMapper.toDto(clienteRepository.save(cliente)));
+    public ClienteDto salvar(Cliente cliente){
+        return clienteMapper.toDto(clienteRepository.save(cliente));
     }
 
-    public ResponseEntity<ClienteDto> atualizar(Cliente cliente) throws NaoEncontradoException {
-        try{
+    public ResponseEntity<ClienteDto> atualizar(Cliente cliente) {
+        var clienteOptional = clienteRepository.findById(cliente.getId());
+        if (clienteOptional.isPresent()) {
+            clienteRepository.save(cliente);
             return ResponseEntity.ok(clienteMapper.toDto(cliente));
-        }catch (Exception e){
-            throw new NaoEncontradoException("Cliente não encontrado");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

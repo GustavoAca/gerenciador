@@ -11,7 +11,14 @@ public class ClienteMapper {
                 .nome(entity.getNome())
                 .contato(entity.getContato())
                 .veiculo(entity.getVeiculo())
-                .usuario(entity.getUsuario())
+                .user(entity.getUser())
+                .build();
+    }
+
+    public ClienteDto toDtoReduzito(Cliente entity){
+        return ClienteDto.builder().id(entity.getId())
+                .nome(entity.getNome())
+                .contato(entity.getContato())
                 .build();
     }
 
@@ -20,7 +27,7 @@ public class ClienteMapper {
                 .nome(dto.getNome())
                 .contato(dto.getContato())
                 .veiculo(dto.getVeiculo())
-                .usuario(dto.getUsuario())
+                .user(dto.getUser())
                 .build();
     }
 }

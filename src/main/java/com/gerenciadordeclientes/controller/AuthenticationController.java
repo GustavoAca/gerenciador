@@ -3,14 +3,16 @@ package com.gerenciadordeclientes.controller;
 
 import com.gerenciadordeclientes.domain.user.AuthenticationDto;
 import com.gerenciadordeclientes.domain.user.RegisterDto;
+import com.gerenciadordeclientes.domain.user.User;
 import com.gerenciadordeclientes.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -31,5 +33,16 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data){
         return authenticationService.register(data);
+    }
+
+    @GetMapping
+    @Cacheable("usuarios")
+    public Page<User> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
+        return authenticationService.findAll(pageable);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        authenticationService.deletar(id);
     }
 }

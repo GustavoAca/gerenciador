@@ -1,6 +1,7 @@
 package com.gerenciadordeclientes.dto.veiculo;
 
 import com.gerenciadordeclientes.domain.veiculo.TiposVeiculos;
+import com.gerenciadordeclientes.domain.veiculo.Vencimento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class VeiculoDto implements Serializable {
 
     private Boolean uber;
 
-    private String vencimentoBoleto;
+    private Vencimento vencimentoBoleto;
 
     private Float mensalidade;
 

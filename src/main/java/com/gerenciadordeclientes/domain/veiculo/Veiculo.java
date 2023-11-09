@@ -30,7 +30,9 @@ public class Veiculo implements Serializable {
 
 	private Boolean uber;
 
-	private String vencimentoBoleto;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "vencimento_boleto")
+	private Vencimento vencimentoBoleto;
 
 	private Float mensalidade;
 

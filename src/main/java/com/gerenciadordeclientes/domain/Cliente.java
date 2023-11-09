@@ -1,6 +1,7 @@
 package com.gerenciadordeclientes.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gerenciadordeclientes.domain.user.User;
 import com.gerenciadordeclientes.domain.veiculo.Veiculo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,5 @@ public class Cliente implements Serializable {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("cliente")
-	private Usuario usuario;
+	private User user;
 }

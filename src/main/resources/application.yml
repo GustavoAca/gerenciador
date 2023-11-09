@@ -59,9 +59,6 @@ spring:
     username: postgres
     password: 1234567
   flyway:
-    url: jdbc:postgresql://localhost:5433/gestao
-    user: postgres
-    password: 1234567
     locations: classpath:db/migration
   jpa:
     hibernate:

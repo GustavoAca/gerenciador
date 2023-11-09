@@ -1,6 +1,7 @@
 package com.gerenciadordeclientes.service;
 
 import com.gerenciadordeclientes.domain.veiculo.Veiculo;
+import com.gerenciadordeclientes.domain.veiculo.Vencimento;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoDto;
 import com.gerenciadordeclientes.dto.veiculo.VeiculoMapper;
 import com.gerenciadordeclientes.repository.VeiculoRepository;
@@ -50,8 +51,8 @@ public class VeiculoService {
         veiculoRepository.deleteById(id);
     }
 
-    public Page<VeiculoDto> getVeiculosPorVencimento(String vencimento, Pageable pageable){
-        return veiculoRepository.findVeiculoByVencimento(vencimento, pageable).map(veiculoMapper::toDto);
+    public Page<VeiculoDto> getVeiculosPorVencimento(Vencimento vencimento, Pageable pageable){
+        return veiculoRepository.findVeiculoByVencimento(vencimento.getKey(), pageable).map(veiculoMapper::toDto);
     }
 
 }

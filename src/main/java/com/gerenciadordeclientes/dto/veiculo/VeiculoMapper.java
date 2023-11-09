@@ -45,7 +45,7 @@ public class VeiculoMapper {
         var cliente = clienteService.buscarPorId(id);
         return Cliente.builder()
                 .id(cliente.getId())
-                .usuario(cliente.getUsuario())
+                .user(cliente.getUser())
                 .contato(cliente.getContato())
                 .nome(cliente.getNome())
                 .build();
