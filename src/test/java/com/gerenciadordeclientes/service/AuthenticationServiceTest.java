@@ -6,6 +6,7 @@ import com.gerenciadordeclientes.domain.user.RegisterDto;
 import com.gerenciadordeclientes.domain.user.Role;
 import com.gerenciadordeclientes.domain.user.User;
 import com.gerenciadordeclientes.exception.NaoEncontradoException;
+import com.gerenciadordeclientes.mock.LoginTest;
 import com.gerenciadordeclientes.mock.MockFactory;
 import org.checkerframework.checker.units.qual.N;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ class AuthenticationServiceTest extends GerenciadorApplicationTests {
 
         @BeforeEach
         void setup() {
-            registerDto = mockFactory.registrar("G@gmail.com");
+            registerDto = mockFactory.registrar(LoginTest.G);
         }
 
         @Nested
@@ -58,8 +59,8 @@ class AuthenticationServiceTest extends GerenciadorApplicationTests {
         class Quando_tentar_logar extends GerenciadorApplicationTests {
             @BeforeEach
             void setup() {
-                authenticationService.register(mockFactory.registrar("Grimal@gmail.com"));
-                AuthenticationDto authenticationDto = new AuthenticationDto("Grimal@gmail.com", "12345");
+                authenticationService.register(mockFactory.registrar(LoginTest.GRIMAL));
+                AuthenticationDto authenticationDto = new AuthenticationDto(LoginTest.GRIMAL.getEmail(), "12345");
                 responseEntity = authenticationService.login(authenticationDto);
             }
 
@@ -76,8 +77,8 @@ class AuthenticationServiceTest extends GerenciadorApplicationTests {
 
             @BeforeEach
             void setup() {
-                authenticationService.register(mockFactory.registrar("grind@gmail.com"));
-                user = authenticationService.findAll(PageRequest.of(0, 2)).stream().filter(u -> u.getLogin().equals("grind@gmail.com")).findFirst().orElseThrow();
+                authenticationService.register(mockFactory.registrar(LoginTest.GRIND));
+                user = authenticationService.findAll(PageRequest.of(0, 2)).stream().filter(u -> u.getLogin().equals(LoginTest.GRIND.getEmail())).findFirst().orElseThrow();
                 authenticationService.deletar(user.getId());
             }
 
