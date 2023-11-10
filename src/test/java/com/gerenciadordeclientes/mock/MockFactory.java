@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MockFactory {
 
-    public RegisterDto registrar(String login){
-       return new RegisterDto(login,"12345", Role.USER,"Grimal");
+    public RegisterDto registrar(LoginTest login){
+        return new RegisterDto(login.getEmail(),"12345", Role.USER,login.getNome());
     }
 }
