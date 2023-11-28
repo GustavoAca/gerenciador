@@ -15,12 +15,6 @@
         CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
         );
 
-    CREATE TABLE IF NOT EXISTS imagens (
-        id SERIAL PRIMARY KEY,
-        nome VARCHAR(255) NOT NULL,
-        dados BYTEA NOT NULL
-    );
-
     CREATE TABLE IF NOT EXISTS veiculos (
        id SERIAL NOT NULL,
         mensalidade float4,
