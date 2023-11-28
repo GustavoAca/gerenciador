@@ -1,6 +1,9 @@
 file:
   uploadDir: gerenciador/src/main/resources/uploads
 
+documento:
+  url: http://localhost:8081
+
 api:
   security:
     token:
@@ -54,9 +57,24 @@ datasource:
 spring:
   config:
     activate:
-      on-profile: dev-postgres
+      on-profile: dev
   datasource:
     url: jdbc:postgresql://localhost:5433/gestao
+    username: postgres
+    password: 1234567
+  flyway:
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://dev-postgres:5433/gestao
     username: postgres
     password: 1234567
   flyway:
