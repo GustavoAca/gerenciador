@@ -9,8 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: dockerhub_token
     steps:
+      - name: Debug
+        run: |
+          echo "Secrets disponíveis: ${{ toJson(secrets) }}"
+          echo "Variáveis de ambiente disponíveis: ${{ toJson(env) }}"
+
       - name: Verificar repositório
         uses: actions/checkout@v2
 
