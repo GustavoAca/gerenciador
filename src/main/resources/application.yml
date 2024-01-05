@@ -74,7 +74,7 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:postgresql://dev-postgres:5433/gestao
+    url: ${POSTGRES}
     username: postgres
     password: 1234567
   flyway:
