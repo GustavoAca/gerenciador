@@ -9,11 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: DOCKERHUB_TOKEN
     steps:
       - name: Debug
+        env:
+            TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
-          echo "Secrets disponíveis: ${{ toJson(secrets) }}"
+          echo "Secrets disponíveis: $TOKEN"
           echo "Variáveis de ambiente disponíveis: ${{ toJson(env) }}"
 
       - name: Verificar repositório
