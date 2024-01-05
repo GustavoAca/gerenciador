@@ -10,13 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug
-        env:
-            TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: |
-          echo "Secrets disponíveis: $TOKEN"
-          echo "Variáveis de ambiente disponíveis: ${{ toJson(env) }}"
-
       - name: Verificar repositório
         uses: actions/checkout@v2
 
@@ -69,7 +62,10 @@ jobs:
         run: mvn package
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        env:
+          TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: echo "$TOKEN" | docker login -u "$USERNAME" --password-stdin
 
       - name: Build imagem docker
         run: |
