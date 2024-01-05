@@ -3,7 +3,6 @@ name: Continuos Integration and Docker Hub Deploy
 on:
   push:
     branches:
-      - main
       - 'G*'
 
 jobs:
