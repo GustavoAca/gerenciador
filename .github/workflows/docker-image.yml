@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: dockerhub_token
+    environment: DOCKERHUB_TOKEN
     steps:
       - name: Debug
         run: |
