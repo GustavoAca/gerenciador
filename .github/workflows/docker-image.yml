@@ -65,7 +65,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: echo "#PPgg1231" | docker login -u "gacacio" --password-stdin
+        run: echo "#Galasdalas50" | docker login -u "gacacio" --password-stdin
 
       - name: Build imagem docker
         run: |
