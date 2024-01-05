@@ -30,9 +30,9 @@ jobs:
 
       - name: Build imagem docker
         run: |
-          docker build . --file Dockerfile --tag gerenciador:$(date +%s)
+          docker build . --file Dockerfile --tag gerenciador:latest
 
       - name: Deploy image
         run: |
-          docker tag gerenciador:$(date +%s) gacacio/gerenciador:$(date +%s)
-          docker push gacacio/gerenciador:$(date +%s)
+          docker tag gerenciador:latest gacacio/gerenciador:latest
+          docker push gacacio/gerenciador:latest
