@@ -1,0 +1,25 @@
+name: Atualizar Versão
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  atualizar-versao:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar código
+        uses: actions/checkout@v2
+
+      - name: Configurar Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Atualizar Versão
+        run: |
+          chmod +x version.sh
+          ../../version.sh
