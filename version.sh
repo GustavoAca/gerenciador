@@ -20,6 +20,7 @@ github_actor="$GITHUB_ACTOR"
 
 git config --global user.email "galasdalas50@gmail.com"
 git config --global user.name "$github_actor"
+git config --global push.default simple
 
 git add pom.xml
 git commit -m "Atualizar versão para ${nova_versao}"
