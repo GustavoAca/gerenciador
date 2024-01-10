@@ -64,11 +64,14 @@ jobs:
       - name: Login to Docker Hub
         run: echo "#Galasdalas50" | docker login -u "gacacio" --password-stdin
 
+      - name: extrair versão do pom
+        run: echo "::set-env name=PROJECT_VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+
       - name: Build imagem docker
         run: |
-          docker build . --file Dockerfile --tag gerenciador:latest
+          docker build . --file Dockerfile --tag gerenciador:${{ env.PROJECT_VERSION }}
 
       - name: Deploy image
         run: |
-          docker tag gerenciador:latest gacacio/gerenciador:latest
-          docker push gacacio/gerenciador:latest
+          docker tag gerenciador:${{ env.PROJECT_VERSION }} gacacio/gerenciador:${{ env.PROJECT_VERSION }}
+          docker push gacacio/gerenciador:${{ env.PROJECT_VERSION }}
