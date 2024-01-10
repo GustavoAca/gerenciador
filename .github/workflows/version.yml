@@ -24,9 +24,3 @@ jobs:
           cd $GITHUB_WORKSPACE
           chmod +x version.sh
           ./version.sh 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
-
-      - name: Commit e Push
-        run: |
-            git add .
-            git commit -m "Atualizando versão POM"
-            git push origin main

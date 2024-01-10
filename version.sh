@@ -21,5 +21,6 @@ github_actor="$GITHUB_ACTOR"
 git config --global user.email "${github_actor}@users.noreply.github.com"
 git config --global user.name "$github_actor"
 
-# Adiciona o token como credencial para o repositório remoto
-git remote set-url origin "https://${git_access_token}git@github.com:GustavoAca/gerenciador.git"
+git add .
+git commit -m "Atualizando versão POM"
+git push "https://${git_access_token}git@github.com:${github_actor}/gerenciador.git"
