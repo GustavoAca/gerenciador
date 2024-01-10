@@ -18,9 +18,8 @@ echo "Nova versão: $nova_versao"
 
 github_actor="$GITHUB_ACTOR"
 
-git config --global user.email "${github_actor}@users.noreply.github.com"
+git config --global user.email "galasdalas50@gmail.com"
 git config --global user.name "$github_actor"
-echo "${github_actor}@users.noreply.github.com"
 
 git add pom.xml
 git commit -m "Atualizar versão para ${nova_versao}"
