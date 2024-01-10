@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ../..
-
 # Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
 versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
 
