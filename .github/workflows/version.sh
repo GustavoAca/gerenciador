@@ -1,12 +1,21 @@
 #!/bin/bash
 
-# Atualiza o número da versão no arquivo pom.xml
-nova_versao=$(awk -F '[<>]' '/<version>/{print $3}' pom.xml | awk -F. '{$NF++; OFS="."; print $0}')
-sed -i "s|<version>.*</version>|<version>${nova_versao}</version>|" pom.xml
+# Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
+versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
 
-echo "Versão atualizada para: ${nova_versao}"
+# Divide a versão em partes (por exemplo, 1.0.0 será dividido em 1, 0 e 0)
+IFS='.' read -r -a partes <<< "$versao_atual"
 
-# Commit e push das mudanças
+# Incrementa o segundo número na versão
+novo_numero=$(( ${partes[1]} + 1 ))
+
+# Atualiza a versão no arquivo pom.xml com o novo número
+nova_versao="${partes[0]}.${novo_numero}.${partes[2]}"
+sed -i "/<artifactId>gerenciador<\/artifactId>/!b;n;c<version>${nova_versao}</version>" pom.xml
+
+echo "Versão anterior: $versao_atual"
+echo "Nova versão: $nova_versao"
+
 git add pom.xml
 git commit -m "Atualizar versão para ${nova_versao}"
 git push origin main
