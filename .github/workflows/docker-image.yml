@@ -3,8 +3,6 @@ name: Deploy
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -65,7 +63,8 @@ jobs:
         run: echo "#Galasdalas50" | docker login -u "gacacio" --password-stdin
 
       - name: extrair versão do pom
-        run: echo "::set-env name=PROJECT_VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+        id: extract_version
+        run: echo "PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
       - name: Build imagem docker
         run: |
