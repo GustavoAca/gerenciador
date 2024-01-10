@@ -1,5 +1,6 @@
 # Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
 versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
+git_access_token="$1"
 
 # Divide a versão em partes (por exemplo, 1.0.0 será dividido em 1, 0 e 0)
 IFS='.' read -r -a partes <<< "$versao_atual"
@@ -21,4 +22,4 @@ git config --global user.email "${github_actor}@users.noreply.github.com"
 git config --global user.name "$github_actor"
 
 # Adiciona o token como credencial para o repositório remoto
-git remote set-url origin "https://${GITHUB_TOKEN}git@github.com:GustavoAca/gerenciador.git"
+git remote set-url origin "https://${git_access_token}git@github.com:GustavoAca/gerenciador.git"
