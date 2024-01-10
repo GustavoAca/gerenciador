@@ -21,5 +21,5 @@ jobs:
 
       - name: Atualizar Versão
         run: |
-          chmod +x ../../version.sh
-          ../../version.sh
+          chmod +x ../version.sh
+          ../version.sh
