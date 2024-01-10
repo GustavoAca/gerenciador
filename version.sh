@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ../..
+
 # Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
 versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
 
@@ -16,6 +18,6 @@ sed -i "/<artifactId>gerenciador<\/artifactId>/!b;n;c<version>${nova_versao}</ve
 echo "Versão anterior: $versao_atual"
 echo "Nova versão: $nova_versao"
 
-git add pom.xml
-git commit -m "Atualizar versão para ${nova_versao}"
-git push origin main
+#git add pom.xml
+#git commit -m "Atualizar versão para ${nova_versao}"
+#git push origin main
