@@ -19,12 +19,6 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Configurar Git
-        run: |
-          git config user.email "galasdalas50@gmail.com"
-          git config user.name "$GITHUB_ACTOR"
-            
-
       - name: Atualizar Versão
         run: |
           cd $GITHUB_WORKSPACE

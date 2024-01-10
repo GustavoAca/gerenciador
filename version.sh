@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
 versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
 
@@ -15,3 +13,12 @@ sed -i "/<artifactId>gerenciador<\/artifactId>/!b;n;c<version>${nova_versao}</ve
 
 echo "Versão anterior: $versao_atual"
 echo "Nova versão: $nova_versao"
+
+github_actor="$GITHUB_ACTOR"
+
+# Configura o email do Git
+git config --global user.email "${github_actor}@users.noreply.github.com"
+git config --global user.name "$github_actor"
+
+# Adiciona o token como credencial para o repositório remoto
+git remote set-url origin "https://${GITHUB_TOKEN}git@github.com:GustavoAca/gerenciador.git"
