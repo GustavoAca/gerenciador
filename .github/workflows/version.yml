@@ -28,5 +28,5 @@ jobs:
       - name: Commit e Push
         run: |
             git add .
-            git commit -m "Mensagem do Commit"
+            git commit -m "Atualizando versão POM"
             git push origin main
