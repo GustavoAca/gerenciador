@@ -62,7 +62,6 @@ jobs:
         run: mvn package
 
       - name: Login to Docker Hub
-        env:
         run: echo "#Galasdalas50" | docker login -u "gacacio" --password-stdin
 
       - name: Build imagem docker
