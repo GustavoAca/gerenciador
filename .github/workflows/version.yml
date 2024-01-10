@@ -23,5 +23,5 @@ jobs:
         run: |
           git config --global user.email "galasdalas50@gmail.com"
           git config --global user.name "Gustavo Acácio"
-          chmod 755 ./version.sh
+          chmod 755 version.sh
           ./version.sh
