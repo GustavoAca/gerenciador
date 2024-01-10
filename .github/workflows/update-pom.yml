@@ -23,7 +23,7 @@ jobs:
         run: |
           # Atualize o número da versão no arquivo pom.xml
           nova_versao=$(awk -F '[<>]' '/<version>/{print $3}' pom.xml | awk -F. '{$NF++; OFS="."; print $0}')
-          sed -i "s/<version>.*<\/version>/<version>${nova_versao}<\/version>/" pom.xml
+          sed -i "s|<version>.*</version>|<version>${nova_versao}</version>|" pom.xml
 
       - name: Commit e Push das mudanças
         run: |
