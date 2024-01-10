@@ -7,6 +7,7 @@ import com.gerenciadordeclientes.domain.user.User;
 import com.gerenciadordeclientes.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -36,6 +37,7 @@ public class AuthenticationController {
     }
 
     @GetMapping
+    @Cacheable(value = "buscarUsuario", key = "#pageable.pageNumber")
     public Page<User> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
         return authenticationService.findAll(pageable);
     }
