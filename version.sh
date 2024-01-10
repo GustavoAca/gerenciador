@@ -15,13 +15,3 @@ sed -i "/<artifactId>gerenciador<\/artifactId>/!b;n;c<version>${nova_versao}</ve
 
 echo "Versão anterior: $versao_atual"
 echo "Nova versão: $nova_versao"
-
-github_actor="$GITHUB_ACTOR"
-
-git config --global user.email "galasdalas50@gmail.com"
-git config --global user.name "$github_actor"
-git config --global push.default simple
-
-git add pom.xml
-git commit -m "Atualizar versão para ${nova_versao}"
-git push origin main
