@@ -20,7 +20,10 @@ jobs:
           java-version: '17'
 
       - name: Atualizar Versão
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
         run: |
           cd $GITHUB_WORKSPACE
           chmod +x version.sh
-          ./version.sh 
+          ./version.sh $GITHUB_TOKEN
+       
