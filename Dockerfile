@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-COPY target/gerenciador-1.0.0.jar /app/gerenciador-1.0.0.jar
+COPY target/gerenciador-${PROJECT_VERSION}.jar /app/gerenciador-1.0.0.jar
 
 ENV JAVA_OPTS="-Xmx256m -Xms128m"
 
