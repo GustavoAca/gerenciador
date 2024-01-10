@@ -1,6 +1,5 @@
 # Obtém a versão atual do arquivo pom.xml abaixo da linha <artifactId>gerenciador</artifactId>
 versao_atual=$(awk -F '[<>]' '/<artifactId>gerenciador<\/artifactId>/{getline; print $3}' pom.xml)
-git_access_token="$1"
 
 # Divide a versão em partes (por exemplo, 1.0.0 será dividido em 1, 0 e 0)
 IFS='.' read -r -a partes <<< "$versao_atual"
@@ -23,4 +22,4 @@ git config --global user.name "$github_actor"
 
 git add .
 git commit -m "Atualizando versão POM"
-git push "https://${git_access_token}git@github.com:${github_actor}/gerenciador.git"
+git push "https://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@github.com:${github_actor}/gerenciador.git"

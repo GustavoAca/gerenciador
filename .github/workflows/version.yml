@@ -23,4 +23,4 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           chmod +x version.sh
-          ./version.sh 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
+          ./version.sh 
