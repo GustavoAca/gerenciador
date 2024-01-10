@@ -21,7 +21,8 @@ github_actor="$GITHUB_ACTOR"
 git config --global user.email "${github_actor}@users.noreply.github.com"
 git config --global user.name "$github_actor"
 
+echo "git push https://${git_access_token}git@github.com:${github_actor}/gerenciador.git"
+
 git add .
 git commit -m "Atualizando versão POM"
 git push "https://${git_access_token}git@github.com:${github_actor}/gerenciador.git"
-echo "git push "https://${git_access_token}git@github.com:${github_actor}/gerenciador.git"
